@@ -1,42 +1,50 @@
 
+           </div>
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 space-y-4 shadow-xl">
+                <h3 class="font-bold text-slate-200"><i class="fas fa-book text-amber-500 mr-2"></i>नया उधारी हिसाब दर्ज करें</h3>
+                <div class="space-y-3">
+                    <input type="text" id="biz-name" placeholder="ग्राहक का नाम (उदा. रमेश जी)" class="w-full bg-slate-800 border border-slate-700 rounded-xl p-3 text-sm text-white focus:outline-none">
+                    <input type="number" id="biz-amount" placeholder="उधारी राशि (₹)" class="w-full bg-slate-800 border border-slate-700 rounded-xl p-3 text-sm text-white focus:outline-none">
+                    <button onclick="saveRecord()" class="w-full bg-emerald-600 text-white font-bold p-3 rounded-xl text-sm shadow-md">💰 डायरी में दर्ज करें</button>
+                </div>
+                <div id="biz-log" class="hidden bg-slate-950 p-4 rounded-xl text-xs text-slate-300 space-y-2 border border-slate-800"></div>
+            </div>
+        </div>
+
+        <!-- Office Zone UI -->
+        <div id="office-zone" class="hidden space-y-6">
+            <div class="flex items-center gap-3">
+                <button onclick="switchZone('home')" class="text-xs bg-purple-900/40 text-purple-300 px-3 py-1.5 rounded-lg border border-purple-800/40">⬅️ पीछे जाएं</button>
+                <h2 class="text-xl font-bold text-purple-400">💻 ऑफिस ज़ोन</h2>
+            </div>
+            <div class="bg-[#1a162e] border border-purple-900/50 rounded-2xl p-5 shadow-xl space-y-4">
+                <h3 class="font-bold text-purple-200"><i class="fas fa-envelope-open-text text-purple-400 mr-2"></i>एआई ईमेल / लेटर मेकर</h3>
+                <div class="space-y-3">
+                    <input type="text" id="email-topic" placeholder="विषय (उदा. २ दिन की छुट्टी के लिए आवेदन)" class="w-full bg-purple-950/60 border border-purple-800/60 rounded-xl p-3 text-sm text-white focus:outline-none">
+                    <div class="flex gap-2">
+                        <button onclick="generateEmail('hindi')" class="flex-1 bg-purple-600 text-white font-semibold p-2.5 rounded-xl text-xs shadow-md">लिखें (Hindi)</button>
+                        <button onclick="generateEmail('english')" class="flex-1 bg-indigo-600 text-white font-semibold p-2.5 rounded-xl text-xs shadow-md">Write (English)</button>
+                    </div>
+                </div>
+                <div id="email-result" class="hidden bg-purple-950/40 p-4 rounded-xl border border-purple-900/40 text-xs text-purple-200 whitespace-pre-wrap leading-relaxed"></div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="fixed bottom-0 left-0 right-0 bg-[#0b1220]/90 border-t border-blue-900/30 backdrop-blur-md py-3 text-center text-[10px] text-blue-300/40">
+        © 2026 Super Smart AI • Powered by GitHub Pages
+    </footer>
+
     <script>
         function switchZone(zone) {
             document.getElementById('home-zone').classList.add('hidden');
             document.getElementById('student-zone').classList.add('hidden');
             document.getElementById('business-zone').classList.add('hidden');
+            document.getElementById('office-zone').classList.add('hidden');
             document.getElementById(zone + '-zone').classList.remove('hidden');
         }
         function solveHomework() {
             const resultBox = document.getElementById('hw-result');
-            resultBox.classList.remove('hidden');
-            resultBox.innerHTML = '<div class="flex items-center gap-2 text-cyan-400 font-bold"><i class="fas fa-circle-notch animate-spin"></i> AI आपका होमवर्क स्कैन कर रहा है...</div>';
-            setTimeout(() => {
-                resultBox.innerHTML = '<div class="text-emerald-400 font-bold mb-1"><i class="fas fa-check-circle"></i> AI उत्तर तैयार है:</div><div class="bg-blue-900/20 p-3 rounded-lg border border-blue-900/30 leading-relaxed text-slate-200">यह **प्रकाश संश्लेषण (Photosynthesis)** का प्रश्न है। पौधे सूर्य के प्रकाश, पानी और कार्बन डाइऑक्साइड की मदद से क्लोरोफिल में अपना भोजन (ग्लूकोज) खुद तैयार करते हैं।</div>';
-            }, 2500);
-        }
-        function saveRecord() {
-            const name = document.getElementById('biz-name').value;
-            const amt = document.getElementById('biz-amount').value;
-            if(!name || !amt) return alert("कृपया नाम और राशि दोनों भरें");
-            const log = document.getElementById('biz-log');
-            log.classList.remove('hidden');
-            const date = new Date().toLocaleDateString('hi-IN');
-            
-            const message = `नमस्ते ${name}, Super Smart AI डायरी रिकॉर्ड के अनुसार आपका ₹${amt} का उधार खाता आज दिनांक ${date} को दर्ज कर लिया गया है।`;
-            const encodedText = encodeURIComponent(message);
-            const waLink = `https://wa.me{encodedText}`;
-
-            const newEntry = document.createElement('div');
-            newEntry.className = "flex items-center justify-between bg-slate-900 p-2.5 rounded-lg border border-slate-800 mt-2 animate-fade-in";
-            newEntry.innerHTML = `
-                <div>🗓️ <strong>${date}</strong> - ${name}: <span class="text-red-400 font-semibold">₹${amt} उधार</span></div>
-                <a href="${waLink}" target="_blank" class="bg-green-600/20 text-green-400 border border-green-500/30 px-2 py-1 rounded-md text-[10px] font-bold flex items-center gap-1 active:bg-green-600/40"><i class="fab fa-whatsapp"></i> रिमाइंडर</a>
-            `;
-            log.appendChild(newEntry);
-            
-            document.getElementById('biz-name').value = '';
-            document.getElementById('biz-amount').value = '';
-        }
-    </script>
-</body>
-</html>
+            resultBox.classList.remove('
