@@ -1,14 +1,4 @@
 
-           </div>
-            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-5 space-y-4 shadow-xl">
-                <h3 class="font-bold text-slate-200"><i class="fas fa-book text-amber-500 mr-2"></i>नया उधारी हिसाब दर्ज करें</h3>
-                <div class="space-y-3">
-                    <input type="text" id="biz-name" placeholder="ग्राहक का नाम (उदा. रमेश जी)" class="w-full bg-slate-800 border border-slate-700 rounded-xl p-3 text-sm text-white focus:outline-none">
-                    <input type="number" id="biz-amount" placeholder="उधारी राशि (₹)" class="w-full bg-slate-800 border border-slate-700 rounded-xl p-3 text-sm text-white focus:outline-none">
-                    <button onclick="saveRecord()" class="w-full bg-emerald-600 text-white font-bold p-3 rounded-xl text-sm shadow-md">💰 डायरी में दर्ज करें</button>
-                </div>
-                <div id="biz-log" class="hidden bg-slate-950 p-4 rounded-xl text-xs text-slate-300 space-y-2 border border-slate-800"></div>
-            </div>
         </div>
 
         <!-- Office Zone UI -->
@@ -19,32 +9,39 @@
             </div>
             <div class="bg-[#1a162e] border border-purple-900/50 rounded-2xl p-5 shadow-xl space-y-4">
                 <h3 class="font-bold text-purple-200"><i class="fas fa-envelope-open-text text-purple-400 mr-2"></i>एआई ईमेल / लेटर मेकर</h3>
-                <div class="space-y-3">
-                    <input type="text" id="email-topic" placeholder="विषय (उदा. २ दिन की छुट्टी के लिए आवेदन)" class="w-full bg-purple-950/60 border border-purple-800/60 rounded-xl p-3 text-sm text-white focus:outline-none">
-                    <div class="flex gap-2">
-                        <button onclick="generateEmail('hindi')" class="flex-1 bg-purple-600 text-white font-semibold p-2.5 rounded-xl text-xs shadow-md">लिखें (Hindi)</button>
-                        <button onclick="generateEmail('english')" class="flex-1 bg-indigo-600 text-white font-semibold p-2.5 rounded-xl text-xs shadow-md">Write (English)</button>
-                    </div>
-                </div>
-                <div id="email-result" class="hidden bg-purple-950/40 p-4 rounded-xl border border-purple-900/40 text-xs text-purple-200 whitespace-pre-wrap leading-relaxed"></div>
+                <input type="text" placeholder="विषय दर्ज करें" class="w-full bg-purple-950/60 border border-purple-800/60 rounded-xl p-3 text-sm text-white focus:outline-none">
+                <button onclick="checkVIPAccess()" class="w-full bg-purple-600 text-white font-semibold p-2.5 rounded-xl text-xs shadow-md">एआई से लिखवाएं (Premium)</button>
             </div>
         </div>
 
-    </main>
+        <!-- VIP Subscription Zone UI (The Money Maker) -->
+        <div id="vip-zone" class="hidden space-y-6">
+            <div class="flex items-center gap-3">
+                <button onclick="switchZone('home')" class="text-xs bg-amber-900/40 text-amber-300 px-3 py-1.5 rounded-lg border border-amber-800/40">⬅️ पीछे जाएं</button>
+                <h2 class="text-xl font-bold text-amber-400">👑 VIP प्रीमियम मेंबरशिप</h2>
+            </div>
+            
+            <div class="bg-gradient-to-b from-[#1c1a3a] to-[#121026] border border-amber-500/40 rounded-3xl p-6 shadow-2xl text-center space-y-6 relative overflow-hidden">
+                <div class="inline-flex bg-amber-500/10 p-4 rounded-full border border-amber-500/30">
+                    <i class="fas fa-crown text-4xl text-amber-400"></i>
+                </div>
+                
+                <div>
+                    <h3 class="text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-amber-400 to-yellow-200">Super Smart VIP</h3>
+                    <p class="text-slate-400 text-xs mt-1">असीमित एआई टूल्स और उधारी डायरी अनलॉक करें</p>
+                </div>
 
-    <!-- Footer -->
-    <footer class="fixed bottom-0 left-0 right-0 bg-[#0b1220]/90 border-t border-blue-900/30 backdrop-blur-md py-3 text-center text-[10px] text-blue-300/40">
-        © 2026 Super Smart AI • Powered by GitHub Pages
-    </footer>
+                <!-- Price Tag -->
+                <div class="bg-slate-900/60 rounded-2xl py-4 border border-slate-800">
+                    <span class="text-slate-400 text-xs line-through block">₹499/महीना</span>
+                    <span class="text-3xl font-black text-amber-400">₹49 <span class="text-xs text-slate-300 font-normal">/ केवल एक बार</span></span>
+                </div>
 
-    <script>
-        function switchZone(zone) {
-            document.getElementById('home-zone').classList.add('hidden');
-            document.getElementById('student-zone').classList.add('hidden');
-            document.getElementById('business-zone').classList.add('hidden');
-            document.getElementById('office-zone').classList.add('hidden');
-            document.getElementById(zone + '-zone').classList.remove('hidden');
-        }
-        function solveHomework() {
-            const resultBox = document.getElementById('hw-result');
-            resultBox.classList.remove
+                <!-- Features Included -->
+                <ul class="text-left space-y-3 text-xs text-slate-300 px-2">
+                    <li><i class="fas fa-check text-emerald-400 mr-2"></i> 📷 कैमरा फोटो से 1 सेकंड में होमवर्क सॉल्यूशन</li>
+                    <li><i class="fas fa-check text-emerald-400 mr-2"></i> 💰 उधारी डायरी + ऑटो व्हाट्सएप रिमाइंडर</li>
+                    <li><i class="fas fa-check text-emerald-400 mr-2"></i> 💻 ऑफिस एआई ईमेल राइटर</li>
+                </ul>
+
+                <!-- Payment Link using your UPI
