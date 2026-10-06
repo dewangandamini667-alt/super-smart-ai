@@ -1,47 +1,148 @@
 
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Super Smart AI Pro</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: sans-serif; }
+        body { background-color: #0d1527; color: white; padding-bottom: 120px; text-align: center; }
+        header { background-color: #111e38; padding: 15px; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #1e3a8a; }
+        .logo-text { font-size: 20px; font-weight: bold; color: #38bdf8; }
+        .vip-badge { background: linear-gradient(to right, #d97706, #eab308); color: white; padding: 6px 12px; font-size: 12px; font-weight: bold; border-radius: 20px; cursor: pointer; }
+        main { max-width: 450px; margin: 0 auto; padding: 20px; }
+        .welcome-section { text-align: center; margin: 20px 0; }
+        .welcome-section h1 { font-size: 28px; margin-bottom: 5px; }
+        .welcome-section p { color: #93c5fd; font-size: 14px; }
+        .card { width: 100%; border: none; padding: 20px; border-radius: 16px; margin-bottom: 15px; text-align: left; cursor: pointer; color: white; display: block; }
+        .student-card { background: linear-gradient(to bottom right, #2563eb, #1d4ed8); border: 1px solid #3b82f6; }
+        .business-card { background: linear-gradient(to bottom right, #1e293b, #0f172a); border: 1px solid #334155; }
+        .office-card { background: linear-gradient(to bottom right, #7c3aed, #4c1d95); border: 1px solid #8b5cf6; }
+        .card h3 { font-size: 18px; margin-bottom: 5px; }
+        .card p { font-size: 12px; opacity: 0.8; }
+        .hidden { display: none; }
+        .zone-header { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; }
+        .back-btn { background: #1e3a8a; border: none; color: #93c5fd; padding: 6px 12px; border-radius: 8px; font-size: 12px; cursor: pointer; }
+        .zone-title { font-size: 20px; font-weight: bold; }
+        .box { background-color: #111e38; border: 1px solid #1e3a8a; border-radius: 16px; padding: 20px; text-align: left; }
+        input { width: 100%; background: #1e293b; border: 1px solid #334155; border-radius: 10px; padding: 12px; color: white; font-size: 14px; outline: none; margin-top: 5px; margin-bottom: 10px; }
+        .btn { width: 100%; padding: 12px; border: none; border-radius: 10px; font-weight: bold; font-size: 14px; cursor: pointer; margin-top: 10px; color: white; }
+        .btn-blue { background-color: #2563eb; }
+        .btn-emerald { background-color: #10b981; }
+        .btn-purple { background-color: #7c3aed; }
+        .vip-box { background: linear-gradient(to bottom, #1c1a3a, #121026); border: 1px solid #f59e0b; border-radius: 24px; padding: 25px; text-align: center; }
+        .price-tag { background: #0f172a; padding: 15px; border-radius: 12px; margin: 15px 0; border: 1px solid #1e293b; }
+        .pay-btn { display: block; width: 100%; background: linear-gradient(to right, #f59e0b, #d97706); color: #0f172a; font-weight: bold; padding: 15px; border-radius: 12px; text-decoration: none; text-align: center; font-size: 16px; margin-top: 15px; }
+        .sticky-footer { position: fixed; bottom: 0; left: 0; right: 0; background: linear-gradient(to right, #b45309, #d97706); color: white; padding: 12px; text-align: center; font-size: 12px; font-weight: bold; cursor: pointer; }
+        ul { text-align: left; margin: 15px 0; padding-left: 20px; line-height: 1.8; }
+        li { margin-bottom: 8px; list-style-type: none; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-text">👑 Super Smart AI Pro</div>
+        <div onclick="switchZone('vip')" class="vip-badge">VIP एक्टिव करें</div>
+    </header>
+
+    <main>
+        <div id="home-zone">
+            <div class="welcome-section">
+                <h1>नमस्ते, दामिनी 👋</h1>
+                <p>आज आप ऐप में क्या काम करना चाहती हैं?</p>
+            </div>
+            <button onclick="switchZone('student')" class="card student-card">
+                <h3>🎓 छात्र ज़ोन (Student Zone)</h3>
+                <p>होमवर्क सॉल्व करें और एआई उत्तर पाएं।</p>
+            </button>
+            <button onclick="switchZone('business')" class="card business-card">
+                <h3>💼 व्यापार ज़ोन (Business Zone)</h3>
+                <p>उधारी हिसाब डायरी और व्हाट्सएप रिमाइंडर्स।</p>
+            </button>
+            <button onclick="switchZone('office')" class="card office-card">
+                <h3>💻 ऑफिस ज़ोन (Office Zone)</h3>
+                <p>हिंदी/इंग्लिश ईमेल मेकर और लेटर राइटिंग।</p>
+            </button>
         </div>
 
-        <!-- Office Zone UI -->
-        <div id="office-zone" class="hidden space-y-6">
-            <div class="flex items-center gap-3">
-                <button onclick="switchZone('home')" class="text-xs bg-purple-900/40 text-purple-300 px-3 py-1.5 rounded-lg border border-purple-800/40">⬅️ पीछे जाएं</button>
-                <h2 class="text-xl font-bold text-purple-400">💻 ऑफिस ज़ोन</h2>
+        <div id="student-zone" class="hidden">
+            <div class="zone-header">
+                <button onclick="switchZone('home')" class="back-btn">⬅️ पीछे</button>
+                <div class="zone-title" style="color: #60a5fa;">🎓 छात्र ज़ोन</div>
             </div>
-            <div class="bg-[#1a162e] border border-purple-900/50 rounded-2xl p-5 shadow-xl space-y-4">
-                <h3 class="font-bold text-purple-200"><i class="fas fa-envelope-open-text text-purple-400 mr-2"></i>एआई ईमेल / लेटर मेकर</h3>
-                <input type="text" placeholder="विषय दर्ज करें" class="w-full bg-purple-950/60 border border-purple-800/60 rounded-xl p-3 text-sm text-white focus:outline-none">
-                <button onclick="checkVIPAccess()" class="w-full bg-purple-600 text-white font-semibold p-2.5 rounded-xl text-xs shadow-md">एआई से लिखवाएं (Premium)</button>
+            <div class="box" style="text-align: center;">
+                <p style="margin-bottom: 15px; font-size: 14px;">📷 क्लिक एंड सॉल्व (Homework Helper)</p>
+                <button onclick="checkVIPAccess()" class="btn btn-blue">फोटो चुनें / कैमरा खोलें</button>
             </div>
         </div>
 
-        <!-- VIP Subscription Zone UI (The Money Maker) -->
-        <div id="vip-zone" class="hidden space-y-6">
-            <div class="flex items-center gap-3">
-                <button onclick="switchZone('home')" class="text-xs bg-amber-900/40 text-amber-300 px-3 py-1.5 rounded-lg border border-amber-800/40">⬅️ पीछे जाएं</button>
-                <h2 class="text-xl font-bold text-amber-400">👑 VIP प्रीमियम मेंबरशिप</h2>
+        <div id="business-zone" class="hidden">
+            <div class="zone-header">
+                <button onclick="switchZone('home')" class="back-btn">⬅️ पीछे</button>
+                <div class="zone-title" style="color: #cbd5e1;">💼 व्यापार ज़ोन</div>
             </div>
-            
-            <div class="bg-gradient-to-b from-[#1c1a3a] to-[#121026] border border-amber-500/40 rounded-3xl p-6 shadow-2xl text-center space-y-6 relative overflow-hidden">
-                <div class="inline-flex bg-amber-500/10 p-4 rounded-full border border-amber-500/30">
-                    <i class="fas fa-crown text-4xl text-amber-400"></i>
-                </div>
-                
-                <div>
-                    <h3 class="text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-amber-400 to-yellow-200">Super Smart VIP</h3>
-                    <p class="text-slate-400 text-xs mt-1">असीमित एआई टूल्स और उधारी डायरी अनलॉक करें</p>
-                </div>
+            <div class="box">
+                <h3 style="margin-bottom: 15px; font-size: 16px;">💰 नया उधारी हिसाब दर्ज करें</h3>
+                <input type="text" placeholder="ग्राहक का नाम">
+                <input type="number" placeholder="उधारी राशि (₹)">
+                <button onclick="checkVIPAccess()" class="btn btn-emerald">💰 डायरी में दर्ज करें</button>
+            </div>
+        </div>
 
-                <!-- Price Tag -->
-                <div class="bg-slate-900/60 rounded-2xl py-4 border border-slate-800">
-                    <span class="text-slate-400 text-xs line-through block">₹499/महीना</span>
-                    <span class="text-3xl font-black text-amber-400">₹49 <span class="text-xs text-slate-300 font-normal">/ केवल एक बार</span></span>
-                </div>
+        <div id="office-zone" class="hidden">
+            <div class="zone-header">
+                <button onclick="switchZone('home')" class="back-btn">⬅️ पीछे</button>
+                <div class="zone-title" style="color: #c084fc;">💻 ऑफिस ज़ोन</div>
+            </div>
+            <div class="box">
+                <h3 style="margin-bottom: 15px; font-size: 16px;">📝 एआई ईमेल / लेटर मेकर</h3>
+                <input type="text" placeholder="विषय दर्ज करें">
+                <button onclick="checkVIPAccess()" class="btn btn-purple">एआई से लिखवाएं (Premium)</button>
+            </div>
+        </div>
 
-                <!-- Features Included -->
-                <ul class="text-left space-y-3 text-xs text-slate-300 px-2">
-                    <li><i class="fas fa-check text-emerald-400 mr-2"></i> 📷 कैमरा फोटो से 1 सेकंड में होमवर्क सॉल्यूशन</li>
-                    <li><i class="fas fa-check text-emerald-400 mr-2"></i> 💰 उधारी डायरी + ऑटो व्हाट्सएप रिमाइंडर</li>
-                    <li><i class="fas fa-check text-emerald-400 mr-2"></i> 💻 ऑफिस एआई ईमेल राइटर</li>
+        <div id="vip-zone" class="hidden">
+            <div class="zone-header">
+                <div class="zone-title" style="color: #fbbf24;">👑 VIP प्रीमियम मेंबरशिप</div>
+            </div>
+            <div class="vip-box">
+                <h3 style="font-size: 22px; color: #fbbf24; margin-bottom: 10px;">Super Smart VIP</h3>
+                <div class="price-tag">
+                    <span style="text-decoration: line-through; color: #64748b; font-size: 12px; display: block;">₹499/महीना</span>
+                    <span style="font-size: 28px; font-weight: bold; color: #fbbf24;">₹49 <span style="font-size: 14px; color: white; font-weight: normal;">/ केवल एक बार</span></span>
+                </div>
+                <ul>
+                    <li>✅ 📷 कैमरा फोटो से 1 सेकंड में होमवर्क सॉल्यूशन</li>
+                    <li>✅ 💰 उधारी डायरी + ऑटो व्हाट्सएप रिमाइंडर</li>
+                    <li>✅ 💻 ऑफिस एआई ईमेल राइटर</li>
                 </ul>
+                <a href="upi://pay?pa=dewangandamini67@okaxis&pn=Damini&am=49.00&cu=INR&tn=SuperSmartAI_VIP_Lifetime" class="pay-btn">
+                   💳 अभी ₹49 पे करें और अनलॉक करें
+                </a>
+            </div>
+        </div>
+    </main>
 
-                <!-- Payment Link using your UPI
+    <div onclick="switchZone('vip')" class="sticky-footer">
+        👑 लिमिटेड ऑफर: ₹49 में लाइफटाइम VIP मेंबरशिप लें!
+    </div>
+
+    <script>
+        function switchZone(zone) {
+            const zones = ['home', 'student', 'business', 'office', 'vip'];
+            zones.forEach(z => {
+                const el = document.getElementById(z + '-zone');
+                if(el) el.style.display = 'none';
+            });
+            const target = document.getElementById(zone + '-zone');
+            if(target) target.style.display = 'block';
+        }
+        function checkVIPAccess() {
+            alert("🔐 यह एक प्रीमियम VIP फीचर है! कृपया आगे बढ़ने के लिए ₹49 की वन-टाइम मेंबरशिप लें।");
+            switchZone('vip');
+        }
+        switchZone('home');
+    </script>
+</body>
+</html>
